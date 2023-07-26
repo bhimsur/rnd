@@ -12,6 +12,8 @@ public class QrConstant {
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class Regex {
         public static final String TWO_DECIMAL = "^\\d{2}$";
+        public static final String UP_TO_19_DECIMAL = "^\\d{,19}$";
+        public static final String DECIMAL = "^\\d$";
     }
 
     @NoArgsConstructor(access = AccessLevel.PRIVATE)

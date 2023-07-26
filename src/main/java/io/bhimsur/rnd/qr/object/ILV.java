@@ -1,10 +1,7 @@
 package io.bhimsur.rnd.qr.object;
 
 import io.bhimsur.rnd.qr.constant.QrConstant;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -17,6 +14,7 @@ import java.util.Map;
 @Setter
 @RequiredArgsConstructor
 @Valid
+@ToString
 public class ILV implements Serializable {
     private static final long serialVersionUID = 1L;
 
