@@ -1,8 +1,8 @@
 package io.bhimsur.rnd.qr;
 
-import io.bhimsur.rnd.qr.core.QrMid;
-import io.bhimsur.rnd.qr.core.QrPan;
-import io.bhimsur.rnd.qr.core.QrProvider;
+import io.bhimsur.rnd.qr.parameter.QrMid;
+import io.bhimsur.rnd.qr.parameter.QrPan;
+import io.bhimsur.rnd.qr.parameter.QrProvider;
 
 public class QrApplication {
     public static void main(String[] args) {

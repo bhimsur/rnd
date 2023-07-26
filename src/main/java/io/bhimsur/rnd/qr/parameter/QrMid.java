@@ -1,4 +1,4 @@
-package io.bhimsur.rnd.qr.core;
+package io.bhimsur.rnd.qr.parameter;
 
 import io.bhimsur.rnd.qr.exception.QrProviderException;
 import lombok.Getter;
@@ -25,15 +25,15 @@ public enum QrMid {
     private final Integer length;
     private final String prefix;
 
-    private static final Map<QrProvider, io.bhimsur.rnd.qr.core.QrMid> map = new HashMap<>();
+    private static final Map<QrProvider, io.bhimsur.rnd.qr.parameter.QrMid> map = new HashMap<>();
 
     static {
-        for (io.bhimsur.rnd.qr.core.QrMid mid : values()) {
+        for (io.bhimsur.rnd.qr.parameter.QrMid mid : values()) {
             map.put(QrProvider.valueOf(mid.name()), mid);
         }
     }
 
-    public static io.bhimsur.rnd.qr.core.QrMid get(QrProvider provider) {
+    public static io.bhimsur.rnd.qr.parameter.QrMid get(QrProvider provider) {
         return Optional.ofNullable(map.get(provider)).orElseThrow(() -> new QrProviderException(String.format("provider %s not available", provider)));
     }
 }

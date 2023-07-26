@@ -1,6 +1,6 @@
 package io.bhimsur.rnd.qr.constant;
 
-import io.bhimsur.rnd.qr.core.QrCountryISO;
+import io.bhimsur.rnd.qr.parameter.QrCountryISO;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

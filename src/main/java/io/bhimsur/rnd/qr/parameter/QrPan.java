@@ -1,4 +1,4 @@
-package io.bhimsur.rnd.qr.core;
+package io.bhimsur.rnd.qr.parameter;
 
 import io.bhimsur.rnd.qr.exception.QrProviderException;
 import lombok.Getter;
@@ -25,15 +25,15 @@ public enum QrPan {
     private final Integer length;
     private final String prefix;
 
-    private static final Map<QrProvider, io.bhimsur.rnd.qr.core.QrPan> map = new HashMap<>();
+    private static final Map<QrProvider, io.bhimsur.rnd.qr.parameter.QrPan> map = new HashMap<>();
 
     static {
-        for (io.bhimsur.rnd.qr.core.QrPan pan : values()) {
+        for (io.bhimsur.rnd.qr.parameter.QrPan pan : values()) {
             map.put(QrProvider.valueOf(pan.name()), pan);
         }
     }
 
-    public static io.bhimsur.rnd.qr.core.QrPan get(QrProvider provider) {
+    public static io.bhimsur.rnd.qr.parameter.QrPan get(QrProvider provider) {
         return Optional.ofNullable(map.get(provider)).orElseThrow(() -> new QrProviderException(String.format("provider %s not available", provider)));
     }
 }

@@ -1,4 +1,4 @@
-package io.bhimsur.rnd.qr.core;
+package io.bhimsur.rnd.qr.parameter;
 
 import io.bhimsur.rnd.qr.exception.QrProviderException;
 import lombok.Getter;
