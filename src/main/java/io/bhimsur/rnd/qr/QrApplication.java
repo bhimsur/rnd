@@ -15,6 +15,6 @@ public class QrApplication {
 
         QrParser qrParser = new QrParser();
         QrMapper qrMapperId = new QrMapper(qrParser, id);
-        System.out.println(qrMapperId.command());
+        qrMapperId.command();
     }
 }

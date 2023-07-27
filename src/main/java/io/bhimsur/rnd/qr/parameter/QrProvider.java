@@ -14,9 +14,21 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @ToString
 public enum QrProvider {
+    /**
+     * Bank Indonesia
+     */
     BI("ID"),
+    /**
+     * Network for Electronic Transfers
+     */
     NETS("SG"),
+    /**
+     * Interbank Transaction Management and Exchange
+     */
     ITMX("TH"),
+    /**
+     * Payments Network Malaysia
+     */
     PAYNET("MY");
 
     private final String countryCode;

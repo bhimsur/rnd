@@ -21,6 +21,8 @@ public class QrParser {
         Map<String, ILV> map = new LinkedHashMap<>();
         parseRoot(map, qrRoot.getRaw());
         QrCountryISO country = parseCountryCode(map);
+        parserSubTag(map, QrId.MERCHANT_ACCOUNT_INFORMATION_PAYMENT);
+        parserSubTag(map, QrId.MERCHANT_ACCOUNT_INFORMATION);
 
         qrRoot.setRoot(map);
     }
@@ -31,12 +33,12 @@ public class QrParser {
     }
 
     private void parseRoot(Map<String, ILV> map, String raw) {
+        if (!raw.startsWith("00")) throw new QrParserException("invalid format");
+        if (!"01".equals(raw.substring(4, 6))) throw new QrParserException("invalid format");
         parser(map, raw);
     }
 
     private void parser(Map<String, ILV> map, String raw) {
-        if (!raw.startsWith("00")) throw new QrParserException("invalid format");
-        if (!"01".equals(raw.substring(4, 6))) throw new QrParserException("invalid format");
         int length;
         for (int i = 0; i < raw.length(); i = i + 4 + length) {
             String id = raw.substring(i, i + 2);
@@ -46,6 +48,28 @@ public class QrParser {
             map.merge(ilv.getId(), ilv, (k1, k2) -> {
                 throw new QrParserException("Duplicate id %s.", id);
             });
+        }
+    }
+
+    private void parserSubTag(Map<String, ILV> map, QrId qrId) {
+        if (!qrId.isSubTag()) throw new QrParserException("is not sub tag");
+        String id = qrId.getId();
+        if (id.contains("-")) {
+            String[] ids = id.split("-");
+            for (int i = Integer.parseInt(ids[0]); i < Integer.parseInt(ids[1]); i++) {
+                parserSubTag(map, String.valueOf(i));
+            }
+        } else {
+            parserSubTag(map, id);
+        }
+    }
+
+    private void parserSubTag(Map<String, ILV> map, String id) {
+        if (map.containsKey(id)) {
+            Map<String, ILV> subMap = new LinkedHashMap<>();
+            ILV ilv = map.get(id);
+            parser(subMap, ilv.getValue());
+            ilv.setSubTag(subMap);
         }
     }
 
